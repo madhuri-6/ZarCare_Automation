@@ -1,4 +1,5 @@
 {
+
   "WorkWithUs_Heading": "Work with us",
   "FirstName_Error": "First Name is required",
   "SurName_Error": "Surname is required",
@@ -8,4 +9,16 @@
   "Province_Error": "Province is required",
   "City_Error": "City is required",
   "WorkPlace_Error": "Current services is required"
+
+
+  "WorkWithUsErrorMessage": "We have already received your request and it is being reviewed. We shall get back to you very soon."
+
+  "First_Name": "Automation",
+  "Last_Name": "Tester",
+  "Cellphone_Number": "768009231",
+  "Email_Address": "Autotest32@gmail.com",
+  "City": "Cape Town",
+  "Expected_SuccMessage": "Thank you. We have received your request to work with us. We shall get back to you soon."
+
+
 }
