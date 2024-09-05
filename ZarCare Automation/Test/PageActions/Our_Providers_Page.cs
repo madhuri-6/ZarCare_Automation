@@ -6,6 +6,8 @@ namespace ZarCare_Automation.Test.PageActions
     public class Our_Providers_Page : WebdriverSession
     {
         public static Our_Providers_Page_Locators OurProvidersPage = new Our_Providers_Page_Locators();
+        public static Doctor_Profile_Page_Locators DoctorProfilePage = new Doctor_Profile_Page_Locators();
+        public static LoginPage_Locators LoginPage = new LoginPage_Locators();
 
         public static void Validate_OurProviderPage()
         {
@@ -39,6 +41,53 @@ namespace ZarCare_Automation.Test.PageActions
                 }
             }
         }
+        public static void ValidateBookoptmOpen(string Doctorsname)
+        {
+           Wait.WaitTillPageLoad();
+            Generic_Utils.IsElementDisplayed(OurProvidersPage.By_SearchHeader);
+            //Generic_Utils.ScrollToMidOfPage();
+             Generic_Utils.ScrollToBottom();  
+            //Generic_Utils.ScrollToElement(OurProvidersPage.Web_DrJashan_kumar_Ele);
+
+            int DrList = driver.FindElements(OurProvidersPage.By_Doctor_List).Count;
+
+            for (int i = 0; i < DrList; i++)
+            {
+                string dr_name = (OurProvidersPage.Web_Doctor_Name)[i].Text;
+                
+                if (dr_name.Contains(Doctorsname))
+                {
+                   
+                    IWebElement BookOptbtnfnl = (OurProvidersPage.BookOtpbtnList)[i];
+                    BookOptbtnfnl.Click();
+                    break;
+                }
+            }
+
+            Reports.childLog.Log(Status.Info, "doctor Detail Page displayed");
+            Generic_Utils.GetScreenshot("doctor Detail Page screenshot");
+
+           
+        }
+        public static void BookOptClickAndSelectSlotNavigateToLoginPage(string appointment_Time)
+        {
+            
+            int slot_count = DoctorProfilePage.Web_BookingSlot_Currentday.Count;
+
+            for (int a = 0; a < slot_count; a++)
+            {
+                string slot_time = DoctorProfilePage.Web_BookingSlot_Currentday[a].Text;
+
+                if (slot_time.Equals(appointment_Time))
+                {
+                    DoctorProfilePage.Web_BookingSlot_Currentday[a].Click();
+                    break;
+                }
+               
+            }
+
+            Generic_Utils.GetScreenshot("Appointment Date and Time Selected ");
+
 
         //Doctors List By Specific Category
 
@@ -73,6 +122,14 @@ namespace ZarCare_Automation.Test.PageActions
         public static void ValidateSelectedCategory(string OriginalCategoryTitle)
         {
             Assert.True(Generic_Utils.IsElementDisplayed(OurProvidersPage.By_Category_Title), OriginalCategoryTitle);
+        }
+
+
+            Wait.WaitTillPageLoad();
+            Generic_Utils.IsElementDisplayed(LoginPage.By_LogPageheaderText);
+            Reports.childLog.Log(Status.Info, "Register Page displayed");
+            Generic_Utils.GetScreenshot("Navigated to Register page");
+
         }
 
     }

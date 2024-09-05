@@ -8,7 +8,7 @@
             {
                 case "chrome":
 
-                    new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig());
+                   // new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig());
                     driver = new ChromeDriver();
                     break;
 
@@ -143,11 +143,17 @@
         {
             ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView()", element);
         }
+        public static void ScrollToMidOfPage()
+        {
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            js.ExecuteScript("window.scrollTo(0, document.body.scrollHeight / 2);");
+        }
 
         public static void GetCurrentDate()
         {
             DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss").Trim();
         }
+
 
         public static string getTitle()
         {
@@ -177,11 +183,13 @@
             string url = driver.Url;
         }
 
+
         public static void Dropdown_Handle_With_Value(IWebElement element, string value)
         {
             SelectElement selectElement = new SelectElement(element);
             selectElement.SelectByValue(value);
         }
+
 
         public static void Dropdown_Handle_With_Index(IWebElement element, int value)
         {
@@ -198,6 +206,17 @@
         protected static bool IsElementDisplayed(object by_Category_Title)
         {
             throw new NotImplementedException();
+=======
+        public static void DropwoenHandle_with_text(IWebElement element, string text)
+        {
+            SelectElement selectElementtext = new SelectElement(element);
+            selectElementtext.SelectByText(text);
+        }
+        public static void DropDownHandle_with_index(IWebElement element, int index)
+        {
+            SelectElement selectelementIndex = new SelectElement(element);
+            selectelementIndex.SelectByIndex(index);
+
         }
     }
 
