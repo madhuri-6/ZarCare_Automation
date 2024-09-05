@@ -1,4 +1,7 @@
-﻿namespace ZarCare_Automation.Test.PageActions
+﻿using System.Collections;
+using System.Runtime.CompilerServices;
+
+namespace ZarCare_Automation.Test.PageActions
 {
     public class Our_Providers_Page : WebdriverSession
     {
@@ -85,11 +88,49 @@
 
             Generic_Utils.GetScreenshot("Appointment Date and Time Selected ");
 
+
+        //Doctors List By Specific Category
+
+        public static void ValidateAllCategory_And_Click_Category(string doc_category )
+        {
+            IList<IWebElement> doctor_category = OurProvidersPage.Web_AllDoctors_CategoryList;
+            foreach(IWebElement doctor in doctor_category)
+            {
+                string capture_category_text = doctor.Text;
+                if (capture_category_text.Contains(doc_category))
+                {
+                    doctor.Click();
+                    break;
+                }
+            }
+        }
+
+        //public static void ValidateSelectedCategory()
+        //{
+        //    bool SelectedCategoryVisible = OurProvidersPage.Web_Category_Title.Displayed;
+        //    //Console.WriteLine(SelectedCategoryVisible);
+        //    if (SelectedCategoryVisible == true)
+        //    {
+        //        Thread.Sleep(2000);
+        //        Reports.childLog.Log(Status.Info, "Specific Category is selected");
+        //        Generic_Utils.GetScreenshot("Category Screenshot");
+        //        //OurProvidersPage.Web_Category_Clear_Button.Click();
+        //        Thread.Sleep(1000);
+        //    }
+        //}
+
+        public static void ValidateSelectedCategory(string OriginalCategoryTitle)
+        {
+            Assert.True(Generic_Utils.IsElementDisplayed(OurProvidersPage.By_Category_Title), OriginalCategoryTitle);
+        }
+
+
             Wait.WaitTillPageLoad();
             Generic_Utils.IsElementDisplayed(LoginPage.By_LogPageheaderText);
             Reports.childLog.Log(Status.Info, "Register Page displayed");
             Generic_Utils.GetScreenshot("Navigated to Register page");
 
         }
+
     }
 }

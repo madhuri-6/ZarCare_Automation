@@ -17,6 +17,26 @@
         
         public By By_Doctor_Name = By.XPath("//div[@class='card mb-4 history-list']/div //h4[@class='doc-name']/a");
 
+        public IWebElement Web_Doctor_Name => driver.FindElement(By_Doctor_Name);
+
+        //Doctors Category Locators
+
+        public By By_AllDoctors_CategoryList = By.XPath("//ul[@class='filter-list']/li");
+        public IList<IWebElement> Web_AllDoctors_CategoryList => driver.FindElements(By_AllDoctors_CategoryList);
+
+        public By By_Select_Specific_Category = By.XPath("//a[contains(text(),'Counsellor')]");
+        public IWebElement Web_Select_Specific_Category => driver.FindElement(By_Select_Specific_Category);
+
+        public By By_Category_Title = By.XPath("//h5[@class='doc-department']/i");
+        public IWebElement Web_Category_Title => driver.FindElement(By_Category_Title);
+
+        public By By_Category_Clear_Button = By.XPath("//h4[@class='position-relative']/button");
+        public IWebElement Web_Category_Clear_Button => driver.FindElement(By_Category_Clear_Button);
+
+
+
+
+
         public IList<IWebElement> Web_Doctor_Name = driver.FindElements(By.XPath("//div[@class='card mb-4 history-list']/div //h4[@class='doc-name']/a"));
 
         public By By_DrJashanKumr= By.XPath("//a[contains(text(),'Jashan Kumar')]");
@@ -32,5 +52,5 @@
        
 
 
-    } 
+
 }
